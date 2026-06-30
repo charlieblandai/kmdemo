@@ -1,6 +1,5 @@
 # Konica Minolta U.S.A. — Bland Web Widget Demo
 
-Same structure as `mywashington`:
 
 - `index.html` — thin wrapper that loads the Bland widget and iframes the demo site
 - `portal.html` — clone of the Konica Minolta U.S.A. homepage the widget floats over

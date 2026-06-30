@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>US – Konica Minolta</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  :root{
+    --km-blue:#0062c2;
+    --km-blue-dark:#004a93;
+    --ink:#212529;
+    --muted:#6c757d;
+    --line:#e2e6ea;
+    --bg:#ffffff;
+    --bg-alt:#f5f7f9;
+    --bg-dark:#1d2530;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:"Helvetica Neue",Arial,"Segoe UI",sans-serif;
+    color:var(--ink);background:var(--bg);line-height:1.5;-webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+
+  /* ---------- Utility bar ---------- */
+  .utility{background:var(--bg-dark);color:#cfd6de;font-size:13px}
+  .utility .wrap{display:flex;justify-content:flex-end;align-items:center;gap:22px;height:38px}
+  .utility a{transition:color .15s}
+  .utility a:hover{color:#fff}
+  .utility .sep{width:1px;height:14px;background:#3a4654}
+
+  /* ---------- Header ---------- */
+  header{border-bottom:1px solid var(--line);position:sticky;top:0;background:rgba(255,255,255,.97);backdrop-filter:saturate(160%) blur(6px);z-index:40}
+  .header-row{display:flex;align-items:center;justify-content:space-between;height:84px;gap:24px}
+  .brand{display:flex;align-items:center;gap:14px}
+  .brand .mark{display:flex;align-items:baseline;gap:8px}
+  .brand .konica{font-weight:800;letter-spacing:.5px;font-size:26px;color:var(--km-blue)}
+  .brand .minolta{font-weight:300;letter-spacing:.5px;font-size:26px;color:var(--ink)}
+  .brand .tag{font-size:11px;color:var(--muted);border-left:2px solid var(--km-blue);padding-left:9px;line-height:1.25;max-width:130px}
+  nav.primary{display:flex;align-items:center;gap:28px}
+  nav.primary a{font-size:15px;font-weight:500;color:#33404d;padding:6px 0;position:relative}
+  nav.primary a::after{content:"";position:absolute;left:0;right:100%;bottom:-2px;height:2px;background:var(--km-blue);transition:right .2s}
+  nav.primary a:hover{color:var(--km-blue)}
+  nav.primary a:hover::after{right:0}
+  .search-btn{width:40px;height:40px;border:1px solid var(--line);border-radius:50%;display:grid;place-items:center;color:var(--muted);background:#fff;cursor:pointer;transition:.15s}
+  .search-btn:hover{border-color:var(--km-blue);color:var(--km-blue)}
+  .menu-toggle{display:none;border:none;background:none;font-size:26px;color:var(--ink);cursor:pointer}
+
+  /* ---------- Hero ---------- */
+  .hero{position:relative;background:linear-gradient(115deg,#003a73 0%,var(--km-blue) 55%,#1c84e0 100%);color:#fff;overflow:hidden}
+  .hero::after{content:"";position:absolute;inset:0;background:
+     radial-gradient(circle at 82% 18%,rgba(255,255,255,.16),transparent 42%),
+     repeating-linear-gradient(125deg,rgba(255,255,255,.05) 0 2px,transparent 2px 26px);pointer-events:none}
+  .hero .wrap{position:relative;z-index:2;padding:88px 24px 96px;max-width:1200px}
+  .hero .eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;background:rgba(255,255,255,.14);padding:7px 14px;border-radius:999px;margin-bottom:22px}
+  .hero .eyebrow .dot{width:7px;height:7px;border-radius:50%;background:#7ec8ff;box-shadow:0 0 0 4px rgba(126,200,255,.25)}
+  .hero h1{font-size:clamp(30px,4.4vw,52px);font-weight:800;line-height:1.08;max-width:720px;letter-spacing:-.5px}
+  .hero h1 .amp{font-weight:300}
+  .hero p.sub{margin-top:18px;font-size:18px;max-width:560px;color:#dfeeff}
+  .hero .cta-row{margin-top:34px;display:flex;gap:14px;flex-wrap:wrap}
+  .btn{display:inline-flex;align-items:center;gap:9px;font-weight:600;font-size:15px;padding:13px 26px;border-radius:6px;cursor:pointer;border:2px solid transparent;transition:.18s}
+  .btn-light{background:#fff;color:var(--km-blue)}
+  .btn-light:hover{background:#eef5ff;transform:translateY(-1px)}
+  .btn-ghost{border-color:rgba(255,255,255,.55);color:#fff}
+  .btn-ghost:hover{background:rgba(255,255,255,.12)}
+  .btn-primary{background:var(--km-blue);color:#fff}
+  .btn-primary:hover{background:var(--km-blue-dark)}
+
+  /* ---------- Welcome / interest finder ---------- */
+  .finder{background:var(--bg-alt);border-bottom:1px solid var(--line)}
+  .finder .wrap{padding:56px 24px}
+  .finder h2{font-size:30px;font-weight:700;text-align:center;letter-spacing:-.4px}
+  .finder .lede{text-align:center;color:var(--muted);margin:10px auto 0;max-width:620px}
+  .finder-card{background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 10px 30px rgba(16,42,67,.06);padding:30px;margin-top:34px;display:grid;grid-template-columns:1fr 1fr auto;gap:18px;align-items:end}
+  .field label{display:block;font-size:13px;font-weight:600;color:#445;margin-bottom:8px}
+  .field select{width:100%;appearance:none;background:#fff url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' fill='%236c757d' viewBox='0 0 16 16'><path d='M8 11L3 6h10z'/></svg>") no-repeat right 14px center;border:1px solid #ccd4dc;border-radius:7px;padding:13px 40px 13px 14px;font-size:15px;color:var(--ink);cursor:pointer}
+  .field select:focus{outline:none;border-color:var(--km-blue);box-shadow:0 0 0 3px rgba(0,98,194,.15)}
+  .finder-card .btn-go{height:48px;padding:0 34px;font-size:16px}
+  .quicklinks{display:flex;gap:14px;justify-content:center;margin-top:24px;flex-wrap:wrap}
+  .quicklinks a{font-size:14px;font-weight:600;color:var(--km-blue);display:inline-flex;align-items:center;gap:7px}
+  .quicklinks a:hover{text-decoration:underline}
+
+  /* ---------- News ---------- */
+  .section{padding:64px 0}
+  .section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:34px}
+  .section-head h2{font-size:27px;font-weight:700;letter-spacing:-.3px}
+  .section-head .viewall{font-size:14px;font-weight:600;color:var(--km-blue)}
+  .section-head .viewall:hover{text-decoration:underline}
+  .news-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:22px}
+  .news-card{border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#fff;display:flex;flex-direction:column;transition:.18s}
+  .news-card:hover{box-shadow:0 12px 28px rgba(16,42,67,.1);transform:translateY(-3px);border-color:#d4dde6}
+  .news-card .thumb{height:150px;background:linear-gradient(135deg,#0a4f96,#1c84e0);position:relative}
+  .news-card.feature .thumb{height:210px}
+  .news-card .thumb::after{content:"KM";position:absolute;right:16px;bottom:12px;font-weight:800;font-size:13px;letter-spacing:1px;color:rgba(255,255,255,.55)}
+  .news-card .body{padding:18px 20px 22px;display:flex;flex-direction:column;flex:1}
+  .news-card .date{font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--km-blue);margin-bottom:9px}
+  .news-card h3{font-size:16px;font-weight:700;line-height:1.32}
+  .news-card.feature h3{font-size:21px}
+  .news-card p{color:var(--muted);font-size:14px;margin-top:10px}
+  .news-card .read{margin-top:auto;padding-top:16px;font-size:13px;font-weight:600;color:var(--km-blue)}
+
+  /* ---------- Services ---------- */
+  .services{background:var(--bg-alt);border-top:1px solid var(--line)}
+  .svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .svc{background:#fff;border:1px solid var(--line);border-radius:10px;padding:26px 24px;transition:.18s;position:relative;overflow:hidden}
+  .svc::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--km-blue);transform:scaleY(0);transform-origin:top;transition:transform .22s}
+  .svc:hover{box-shadow:0 12px 28px rgba(16,42,67,.1);transform:translateY(-3px)}
+  .svc:hover::before{transform:scaleY(1)}
+  .svc .icon{width:46px;height:46px;border-radius:9px;background:rgba(0,98,194,.1);color:var(--km-blue);display:grid;place-items:center;margin-bottom:16px}
+  .svc h3{font-size:17px;font-weight:700;margin-bottom:8px}
+  .svc p{color:var(--muted);font-size:14px}
+  .svc .arrow{margin-top:14px;font-size:13px;font-weight:600;color:var(--km-blue)}
+
+  /* ---------- Stats strip ---------- */
+  .stats{background:var(--bg-dark);color:#fff}
+  .stats .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;padding:48px 24px;text-align:center}
+  .stat .num{font-size:38px;font-weight:800;color:#7ec8ff;letter-spacing:-1px}
+  .stat .lbl{font-size:13px;color:#aeb9c5;margin-top:6px}
+
+  /* ---------- Footer ---------- */
+  footer{background:#11181f;color:#9aa6b2;font-size:14px}
+  .foot-top{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:30px;padding:56px 0 40px}
+  footer h4{color:#fff;font-size:14px;letter-spacing:.04em;text-transform:uppercase;margin-bottom:16px}
+  footer ul{list-style:none}
+  footer li{margin-bottom:10px}
+  footer a:hover{color:#fff}
+  .foot-brand .konica{font-weight:800;font-size:20px;color:#fff}
+  .foot-brand .minolta{font-weight:300;font-size:20px;color:#cdd6df}
+  .foot-brand p{margin-top:12px;max-width:280px;color:#8c98a4}
+  .foot-bottom{border-top:1px solid #1f2a35;padding:20px 0;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:13px;color:#717d89}
+
+  /* ---------- Responsive ---------- */
+  @media(max-width:960px){
+    .news-grid{grid-template-columns:1fr 1fr}
+    .svc-grid{grid-template-columns:1fr 1fr}
+    .stats .wrap{grid-template-columns:1fr 1fr}
+    .foot-top{grid-template-columns:1fr 1fr}
+    .finder-card{grid-template-columns:1fr}
+  }
+  @media(max-width:760px){
+    nav.primary{display:none}
+    .menu-toggle{display:block}
+    .utility .wrap{justify-content:center;gap:14px;font-size:12px}
+    .news-grid,.svc-grid,.stats .wrap,.foot-top{grid-template-columns:1fr}
+    .brand .tag{display:none}
+    .hero .wrap{padding:64px 24px 72px}
+  }
+</style>
+</head>
+<body>
+
+  <!-- Utility bar -->
+  <div class="utility">
+    <div class="wrap">
+      <a href="#">About</a><span class="sep"></span>
+      <a href="#">Support &amp; Downloads</a><span class="sep"></span>
+      <a href="#">Contact Us</a><span class="sep"></span>
+      <a href="#">Careers</a><span class="sep"></span>
+      <a href="#">Global Contact</a>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header>
+    <div class="wrap header-row">
+      <a class="brand" href="#" aria-label="Konica Minolta U.S.A. home">
+        <span class="mark"><span class="konica">KONICA</span><span class="minolta">MINOLTA</span></span>
+        <span class="tag">Giving Shape to Ideas</span>
+      </a>
+      <nav class="primary">
+        <a href="#services">Business Services</a>
+        <a href="#">Industries</a>
+        <a href="#news">News</a>
+        <a href="#">Resources</a>
+        <a href="#">Contact</a>
+      </nav>
+      <button class="search-btn" aria-label="Search">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+      </button>
+      <button class="menu-toggle" aria-label="Menu">&#9776;</button>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="wrap">
+      <span class="eyebrow"><span class="dot"></span>Award Winner 2025</span>
+      <h1>Winner! 4 Pick <span class="amp">&amp;</span> 2025 A3 Line of the Year Awards</h1>
+      <p class="sub">Recognized again for excellence across our bizhub A3 multifunction lineup — built to give shape to the way your business works.</p>
+      <div class="cta-row">
+        <a class="btn btn-light" href="#">Learn More
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a class="btn btn-ghost" href="#services">Explore Solutions</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interest finder -->
+  <section class="finder">
+    <div class="wrap">
+      <h2>Welcome to Konica Minolta U.S.A.</h2>
+      <p class="lede">Tell us what you need and we'll point you to the right solution, product, or specialist.</p>
+      <div class="finder-card">
+        <div class="field">
+          <label for="interest">I am interested in</label>
+          <select id="interest">
+            <option>Select here...</option>
+            <option>Color Measurement Solutions</option>
+            <option>Healthcare IT</option>
+            <option>IT Services</option>
+            <option>Intelligent Information Management</option>
+            <option>Light and Display Measurement Solutions</option>
+            <option>Medical Imaging</option>
+            <option>Office Printers &amp; Copiers</option>
+            <option>Production &amp; Industrial Printing</option>
+            <option>Security Services</option>
+            <option>Technology Products</option>
+            <option>Unified Communications</option>
+            <option>Video Security Solutions</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="looking">and I'm looking for</label>
+          <select id="looking">
+            <option>Select here...</option>
+            <option>Product information</option>
+            <option>A quote or pricing</option>
+            <option>Support &amp; downloads</option>
+            <option>A local sales representative</option>
+            <option>A demo or consultation</option>
+          </select>
+        </div>
+        <button class="btn btn-primary btn-go">GO</button>
+      </div>
+      <div class="quicklinks">
+        <a href="#">Support &amp; Downloads
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a href="#">Contact Us
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- News -->
+  <section class="section" id="news">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Konica Minolta U.S.A. in the News</h2>
+        <a class="viewall" href="#">View All →</a>
+      </div>
+      <div class="news-grid">
+        <article class="news-card feature">
+          <div class="thumb"></div>
+          <div class="body">
+            <span class="date">8 January 2026</span>
+            <h3>IDC MarketScape for Worldwide Print Security Solutions and Services Hardcopy</h3>
+            <p>Company delivers end-to-end print and IT security with integrated, managed solutions.</p>
+            <span class="read">Read More →</span>
+          </div>
+        </article>
+        <article class="news-card">
+          <div class="thumb"></div>
+          <div class="body">
+            <span class="date">17 June 2025</span>
+            <h3>Konica Minolta Celebrates Educational In-Plant Innovation at ACUP+ 2025</h3>
+            <span class="read">Read More →</span>
+          </div>
+        </article>
+        <article class="news-card">
+          <div class="thumb"></div>
+          <div class="body">
+            <span class="date">3 June 2025</span>
+            <h3>Hesston Prestige Printing Upgrades Wide Format Printer, Adds Second Digital Press</h3>
+            <span class="read">Read More →</span>
+          </div>
+        </article>
+        <article class="news-card">
+          <div class="thumb"></div>
+          <div class="body">
+            <span class="date">13 May 2025</span>
+            <h3>Konica Minolta to Highlight Digital Embellishment Growth Engine at AMPLIFY Print 2025</h3>
+            <span class="read">Read More →</span>
+          </div>
+        </article>
+        <article class="news-card">
+          <div class="thumb"></div>
+          <div class="body">
+            <span class="date">22 April 2025</span>
+            <h3>Konica Minolta's MGI JETvarnish 3D Evolution Installed at Corefact Corporation</h3>
+            <span class="read">Read More →</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section class="section services" id="services">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Konica Minolta U.S.A.'s Business Services</h2>
+        <a class="viewall" href="#">All Services →</a>
+      </div>
+      <div class="svc-grid">
+        <div class="svc">
+          <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="9" width="12" height="7" rx="1"/><path d="M6 9V4h12v5M8 16v4h8v-4"/></svg></div>
+          <h3>Digital Office Printing</h3>
+          <p>Consultancy, implementation and management of digitized workflows and workspaces.</p>
+          <div class="arrow">Learn more →</div>
+        </div>
+        <div class="svc">
+          <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v12H4z"/><path d="M2 20h20M8 16v4M16 16v4"/></svg></div>
+          <h3>Professional Printing</h3>
+          <p>Innovative digital printing and inkjet solutions to expand your business.</p>
+          <div class="arrow">Learn more →</div>
+        </div>
+        <div class="svc">
+          <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="12" rx="1"/><path d="M8 20h8M12 16v4"/></svg></div>
+          <h3>IT Services</h3>
+          <p>Managed solutions for your business-critical infrastructure.</p>
+          <div class="arrow">Learn more →</div>
+        </div>
+        <div class="svc">
+          <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-4.4-9.3-9C1 8 3 4 7 4c2 0 3 1 5 3 2-2 3-3 5-3 4 0 6 4 4.3 8C19 16.6 12 21 12 21z"/></svg></div>
+          <h3>Healthcare</h3>
+          <p>Advanced digital imaging and IT solutions, transforming the patient journey from diagnosis to treatment.</p>
+          <div class="arrow">Learn more →</div>
+        </div>
+        <div class="svc">
+          <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1018 0M12 3v9l5 3"/></svg></div>
+          <h3>Measuring Instruments</h3>
+          <p>Sensing technologies that improve quality control and precision across a wide variety of industries.</p>
+          <div class="arrow">Learn more →</div>
+        </div>
+        <div class="svc">
+          <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/></svg></div>
+          <h3>Imaging IoT</h3>
+          <p>Expanding the image IoT business with optimal solutions built on image IoT technology.</p>
+          <div class="arrow">Learn more →</div>
+        </div>
+        <div class="svc">
+          <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16v12H4z"/><path d="M4 10h16M8 14h8"/></svg></div>
+          <h3>Textile Printers</h3>
+          <p>Meeting the growing demand for short-run production with enhanced speed and color accuracy.</p>
+          <div class="arrow">Learn more →</div>
+        </div>
+        <div class="svc">
+          <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 14a9 9 0 0118 0z"/><path d="M3 14h18M12 5v0"/><circle cx="17" cy="8" r="1"/></svg></div>
+          <h3>Planetarium</h3>
+          <p>Immersive digital planetarium systems and content for science centers and education.</p>
+          <div class="arrow">Learn more →</div>
+        </div>
+        <div class="svc">
+          <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6z"/></svg></div>
+          <h3>Materials &amp; Components</h3>
+          <p>High-performance functional materials and components engineered for advanced industries.</p>
+          <div class="arrow">Learn more →</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="stats">
+    <div class="wrap">
+      <div class="stat"><div class="num">100+</div><div class="lbl">Years of imaging innovation</div></div>
+      <div class="stat"><div class="num">40K+</div><div class="lbl">Employees worldwide</div></div>
+      <div class="stat"><div class="num">150</div><div class="lbl">Countries served</div></div>
+      <div class="stat"><div class="num">#1</div><div class="lbl">In managed print services</div></div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="wrap">
+      <div class="foot-top">
+        <div class="foot-brand">
+          <div><span class="konica">KONICA</span> <span class="minolta">MINOLTA</span></div>
+          <p>Giving shape to ideas. Konica Minolta U.S.A. delivers technology, services and solutions that help businesses work smarter.</p>
+        </div>
+        <div>
+          <h4>Solutions</h4>
+          <ul>
+            <li><a href="#">Office Printing</a></li>
+            <li><a href="#">Production Print</a></li>
+            <li><a href="#">IT Services</a></li>
+            <li><a href="#">Healthcare</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Company</h4>
+          <ul>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Newsroom</a></li>
+            <li><a href="#">Sustainability</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Support</h4>
+          <ul>
+            <li><a href="#">Support &amp; Downloads</a></li>
+            <li><a href="#">Contact Us</a></li>
+            <li><a href="#">Find a Dealer</a></li>
+            <li><a href="#">Global Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="foot-bottom">
+        <span>© 2026 Konica Minolta Business Solutions U.S.A., Inc.</span>
+        <span>Privacy Policy · Terms of Use · Accessibility</span>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
